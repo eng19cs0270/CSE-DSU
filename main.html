@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="utf-8">
+        <title>Smartphone position tracking</title>
+    </head>
+
+    <style>
+        
+        h2{
+            font-size: xx-large;
+            color: white;
+            text-align: center;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        #abstract, #gnss_body{
+            color: white;
+            font-size: large;
+            line-height: 1.5;
+            padding-left: 70px;
+            padding-right: 70px;
+            right: 50%;
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        
+
+
+
+        img {
+        max-width: 100%;
+        max-height:100%;
+        }
+
+        .text {
+        font-size: 70px;
+        }
+
+
+        body{
+            margin: 10;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: #031526;
+        }
+
+        h1{
+            color: white;
+            width:auto;
+            padding: 10px;
+            top: 2%;
+            
+            text-transform: uppercase;
+            font-weight: 50;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .box{
+            border-radius: 20px;
+            width: 300px;
+            padding: 50px;
+            padding-top: 50px;
+            position: absolute;
+            top: 230%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: linear-gradient(to right,#2C3E50,#000000);
+            text-align: center;
+        }
+
+        .box2{
+            border-radius: 20px;
+            width: 80%;
+            padding: 50px;
+            padding-top: 50px;
+            margin: auto;
+            background: linear-gradient(to right,#2C3E50,#000000);
+            text-align: center;
+        }
+
+        .box h1{
+            color: white;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .box input[type="text"]{
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #D2A813;
+            padding: 14px 10px;
+            width: 200px;
+            outline: none;
+            color: white;
+            border-radius: 10px;
+            transition: 0.25s;
+        }
+
+        .box input[type="text"]:focus{
+            width: 280px;
+            border-color: white;
+        }
+
+        #subbutton{
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid yellow;
+            padding: 14px 40px;
+            width: 200px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+        #division2{
+            display: none;
+            margin-top: 35%;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        .box input[type="submit"]:hover{
+            background-color: rgb(56, 64, 56);
+        }
+
+        label{
+            border: 0;
+            background: none;
+            display: block;
+            margin: 0px auto;
+            text-align: center;
+            padding: 10px 10px; 
+            width: 200px;
+            outline: none;
+            color: white;
+            border-radius: 10px;
+            transition: 0.25s;
+        }
+
+        select {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #D2A813;
+            padding: 14px 10px; 
+            width: 200px;
+            outline: none;
+            color: white;
+            border-radius: 10px;
+            transition: 0.25s;
+        }
+
+        select:focus{
+            width: 280px;
+            border-color: white;
+            background-color: rgb(56, 64, 56);
+        }
+
+        #confusion{
+            padding: 0%;
+            width: 70%;
+        }
+
+        #mobgraph{
+            padding: 0%;
+            margin-top: 15%;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+        }
+
+        #warning{
+          color: white;
+        }
+        
+        .heatmap{
+          padding: 0%;
+          margin-top: 15%;
+            margin-left: auto;
+            margin-right: auto;
+            width: 85%;
+            display: none;
+
+        }
+
+        .info{
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        .container{
+            
+             position:relative;
+             height:60vh;
+             overflow-y: auto;
+             overflow-x: hidden;
+             display:flex;
+             justify-content: center;
+             align-items: center;
+    
+        }
+        
+        header{
+            font-size: 30px;
+        }
+
+
+      
+
+    </style>
+
+
+
+    <body>
+        
+        <header class="container">
+            <h1>SMARTPHONE POSITION TRACKING USING GNSS</h1>
+        </header>
+        
+
+       
+            <div id="abstract" class="box2">
+               <div>
+                
+                <p class="info">
+                    Smartphones are increasingly being used for most applications, including cadastral surveying, mapping surveying applications, and navigation. The goal of this project is to compute smartphone location, which could enable services that require lane-level accuracy, such as high-occupancy vehicle services, and to bridge the gap between geospatial information of finer human behaviours and mobile internet with improved granularity.
+                </p>
+               </div>
+                <div>
+                    <img style="border-radius: 4px; width:400px; height:250px;" src="https://i.ibb.co/2yxyk6V/Smartphone-Tracking-Banner-Opt.jpg" alt="Smartphone-Tracking-Banner-Opt" >
+                </div>
+            </div>
+            
+        
+
+        <br><br>
+        <h2>Why GNSS and not GPS?</h2>
+
+        <div id="gnss_body" class="box2">
+           
+           <div> <img style="border-radius: 4px; width:400px; height:250px;" src="https://i.ibb.co/JQXN9c1/Gnss-NL.webp" alt="Gnss-NL"></div>
+
+           <div> <p class="info">
+             GNSS and GPS work in tandem, but the main difference between the two is that GNSS-compatible equipment can use navigational satellites from networks other than the GPS system, and more satellites means greater receiver accuracy and reliability.
+        </p></div></div>
+           
+        </div>
+
+        <br><br>
+        
+        <div id="division1" class="box">
+            <label for="Mobile">Select Phone Model</label>
+            <select id="Mobile" name="lang" required >
+                <option value="GooglePixel4">GooglePixel4</option>
+                <option value="GooglePixel4XL">GooglePixel4XL</option>
+                <option value="XiaomiMi8">XiaomiMi8</option>
+                <option value="GooglePixel5">GooglePixel5</option>
+                <option value="SamsungGalaxyS20Ultra">SamsungGalaxyS20Ultra</option>
+                <option value="GooglePixel6Pro">GooglePixel6Pro</option>
+            </select>
+            <label for="coordinates">Select location</label>
+            <select id="coordinates" name="lang" required >
+                <option value="redwoodcity">redwoodcity</option>
+                <option value="stanford">stanford</option>
+                <option value="hillsborough">hillsborough</option>
+                <option value="cupertino">cupertino</option>
+                <option value="atherton">atherton</option>
+                <option value="millbrae">millbrae</option>
+                <option value="burlingame">burlingame</option>
+                <option value="sunnyvale">sunnyvale</option>
+                <option value="belmont">belmont</option>
+                <option value="sanmateo">sanmateo</option>
+            </select>
+            <button type="submit" id="subbutton" onclick="myFunction()">Submit</button>
+
+        </div>
+
+        <div id="division2" class="box">
+            <img id="confusion" src="https://i.ibb.co/XbjJqM3/matrix.jpg"></img>
+            <img id="mobgraph" src="https://i.ibb.co/xMGJNV2/phone1.jpg"></img>
+            
+            <iframe id="redwoodcity" class="heatmap" height="450"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.34615325927736%2C37.42538879525665%2C-122.11956024169923%2C37.54607448042116&amp;layer=mapnik&amp;marker=37.48575600784828%2C-122.23285675048828" 
+            style="border: 5px solid black"></iframe>
+
+            <iframe id="stanford" class="heatmap" height="450"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.17759251594545%2C37.42284971596462%2C-122.16343045234682%2C37.430398538071515&amp;layer=mapnik&amp;marker=37.42662374857257%2C-122.17051630000003" 
+            style="border: 1px solid black"></iframe>
+
+            <iframe id="hillsborough" class="heatmap" height="450"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.47592926025392%2C37.4967885353415%2C-122.2493362426758%2C37.61735887841856&amp;layer=mapnik&amp;marker=37.55709809310769%2C-122.36263275146484" 
+            style="border: 5px solid red"></iframe>
+            </iframe>
+
+            <iframe id="cupertino" class="heatmap" height="450"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.15681076049806%2C37.24891436763243%2C-121.93021774291994%2C37.36988433437122&amp;layer=mapnik&amp;marker=37.30945020212062%2C-122.043455" 
+            style="border: 1px solid black"></iframe>
+
+            <iframe id="atherton" class="heatmap" height="450"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.26281166076662%2C37.42334390593085%2C-122.14951515197755%2C37.48371276837851&amp;layer=mapnik&amp;marker=37.45353442781523%2C-122.20616340637207" 
+            style="border: 1px solid black"></iframe>
+
+            <iframe id="millbrae" class="heatmap" height="450"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.45541572570802%2C37.568120075232024%2C-122.34211921691896%2C37.62837193983584&amp;layer=mapnik&amp;marker=37.59826285012051%2C-122.39872879999996" 
+            style="border: 1px solid black"></iframe>
+
+            <iframe id="burlingame" class="heatmap" height="450"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.37434864044191%2C37.58353620742839%2C-122.36018657684328%2C37.591068798848596&amp;layer=mapnik&amp;marker=37.587302598423875%2C-122.36726760864258" 
+            style="border: 1px solid black"></iframe>
+
+
+            <iframe id="sunnyvale" class="heatmap" height="450"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.0805072784424%2C37.36688292232763%2C-121.96721076965333%2C37.427297308239375&amp;layer=mapnik&amp;marker=37.39709370523454%2C-122.02383094999999" 
+            style="border: 1px solid black"></iframe>
+
+            <iframe id="belmont" class="heatmap" height="450"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.35164642333986%2C37.48534736442473%2C-122.2383499145508%2C37.54566616715804&amp;layer=mapnik&amp;marker=37.51554502212251%2C-122.29496725000001" 
+            style="border: 1px solid black"></iframe>
+
+
+            <iframe id="sanmateo" class="heatmap" height="450"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.55249023437501%2C37.44051924041408%2C-122.09930419921876%2C37.68164666029182&amp;layer=mapnik&amp;marker=37.56118049883862%2C-122.32589721679688" 
+            style="border: 1px solid black"></iframe>
+
+            <br>
+            <button type="back" id="backbutton" onclick="changeback()">Back</button>
+
+
+        </div> 
+
+
+        <script>
+            function changeblock()
+            {
+                document.getElementById("division1").style.display = "none";
+                       
+                document.getElementById("division2").style.display = "block";
+            }
+
+            function changeback()
+            {
+                document.getElementById("division1").style.display = "block";
+                       
+                document.getElementById("division2").style.display = "none";
+            }
+
+            function myFunction()
+            {
+                var mobName = document.getElementById("Mobile").value;
+                var location = document.getElementById("coordinates").value;
+                
+                switch(mobName)
+                {
+                    case "GooglePixel4":
+                        document.getElementById("mobgraph").src = "https://i.ibb.co/xMGJNV2/phone1.jpg";
+                    break;
+                    case "GooglePixel4XL":
+                        document.getElementById("mobgraph").src = "https://i.ibb.co/zVCBNc6/phone2.jpg";
+                    break;
+                    case "XiaomiMi8":
+                        document.getElementById("mobgraph").src = "https://i.ibb.co/vJ6v57S/phone3.jpg";
+                    break;
+                    case "GooglePixel5":
+                        document.getElementById("mobgraph").src = "https://i.ibb.co/WW1YWDc/phone4.jpg";
+                    break;
+                    case "SamsungGalaxyS20Ultra":
+                        document.getElementById("mobgraph").src = "https://i.ibb.co/rkqv251/phone5.jpg";
+                    break;
+                    case "GooglePixel6Pro":
+                        document.getElementById("mobgraph").src = "https://i.ibb.co/HYwv8ZZ/phone6.jpg";
+                    break;
+                    
+                }
+
+
+                switch(location)
+                {
+                    case "redwoodcity":
+                    document.getElementById("redwoodcity").style.display = "block";
+                    break;
+                    case "stanford":
+                    document.getElementById("stanford").style.display = "block";
+                    break;
+                    case "hillsborough":
+                    document.getElementById("hillsborough").style.display = "block";                    
+                    break;
+                    case "cupertino":
+                    document.getElementById("cupertino").style.display = "block";
+                    break;
+                    case "atherton":
+                    document.getElementById("atherton").style.display = "block";
+                    break;
+                    case "millbrae":
+                    document.getElementById("millbrae").style.display = "block";
+                    break;
+                    case "burlingame":
+                    document.getElementById("burlingame").style.display = "block";
+                    break;
+                    case "sunnyvale":
+                    document.getElementById("sunnyvale").style.display = "block";
+                    break;
+                    case "belmont":
+                    document.getElementById("belmont").style.display = "block";
+                    break;
+                    case "sanmateo":
+                    document.getElementById("sanmateo").style.display = "block";      
+                    break;
+                    
+                }     
+                  
+                    changeblock();
+            }
+            
+        </script>
+        
+    </body>
+
+
+</html>
